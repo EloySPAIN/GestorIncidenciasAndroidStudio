@@ -34,8 +34,6 @@ public class MainActivity extends AppCompatActivity {
             setContentView(R.layout.llistat);
         }else if(v==btResolucio){
             setContentView(R.layout.resolucio);
-        }else if(v==btHomeAlta || v==btHomeLlistat || v==btHomeResolucio){
-            setContentView(R.layout.activity_main);
         }
 
     }
