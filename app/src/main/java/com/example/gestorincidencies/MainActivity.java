@@ -7,7 +7,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.sql.Connection;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
         btAlta = findViewById(R.id.b1);
         btLlistat = findViewById(R.id.b2);
         btResolucio = findViewById(R.id.b3);
-
     }
 
     public void changeLayout(View v){
@@ -35,9 +37,4 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this,ResolucioIncidencies.class));
         }
     }
-
-
-
-
-
 }
