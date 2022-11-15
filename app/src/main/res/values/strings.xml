@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">GestorIncidencies</string>
+    <string-array name="tipusMarca">
+        <item>Sobremesa</item>
+        <item>Portatil</item>
+        <item>Pantalla</item>
+        <item>Teclado</item>
+        <item>Raton</item>
+    </string-array>
 </resources>
