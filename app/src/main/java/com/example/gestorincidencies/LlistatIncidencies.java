@@ -48,7 +48,7 @@ public class LlistatIncidencies extends AppCompatActivity {
             ConnexioBD connectionHelper = new ConnexioBD();
             connection = connectionHelper.connect();
             if (connection != null) {
-                String query = "Select * from incidencies";
+                String query = "Select * from incidencies2";
                 Statement st = connection.createStatement();
                 ResultSet rs = st.executeQuery(query);
 

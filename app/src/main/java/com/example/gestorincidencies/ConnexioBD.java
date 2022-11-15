@@ -13,17 +13,17 @@ public class ConnexioBD{
 
     @SuppressLint("NewApi")
     public Connection connect(){
-        ip="192.168.5.135";
-        username="root";
+        ip="192.168.5.100";
+        username="jordi";
         pass="123";
         port="3306";
         database="act2m8";
 
+        Connection connection = null;
+        String connectionURL = "";
+
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-
-        Connection connection = null;
-        String connectionURL = null;
 
         try{
             Class.forName("com.mysql.jdbc.Driver");
