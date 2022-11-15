@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -14,7 +16,7 @@ import java.sql.Statement;
 public class LlistatIncidencies extends AppCompatActivity {
     private Button btMostrar;
     private Button btn;
-    private TextView tvResultat;
+    private TextView tvIdResultat, tvNomResultat, tvCognomResultat, tvResumResultat, tvTelefResultat, tvDescResultat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,19 +37,39 @@ public class LlistatIncidencies extends AppCompatActivity {
 
     public void getTextFromSQL(View v) {
         btMostrar = findViewById(R.id.mostrar);
-        tvResultat = findViewById(R.id.tvidResultat);
+        tvIdResultat = findViewById(R.id.tvidResultat);
+        tvNomResultat = findViewById(R.id.tvnomResultat);
+        tvCognomResultat = findViewById(R.id.tvcognomResultat);
+        tvResumResultat = findViewById(R.id.tvresumResultat);
+        tvTelefResultat = findViewById(R.id.tvtelefonResultat);
+        tvDescResultat = findViewById(R.id.tvdescripcioResultat);
 
         try {
             ConnexioBD connectionHelper = new ConnexioBD();
             connection = connectionHelper.connect();
             if (connection != null) {
-                String query = "Select * from incidencies";
+
+                String query = "Select * from incidencies2";
+
                 Statement st = connection.createStatement();
                 ResultSet rs = st.executeQuery(query);
 
                 while (rs.next()) {
-//                    tvResultat.setText(rs.getString());
+
+
+//                    tvIdResultat.setText(rs.getString(1));
+//                    tvNomResultat.setText(rs.getString(2));
+//                    tvCognomResultat.setText(rs.getString(3));
+//                    tvResumResultat.setText(rs.getString(4));
+//                    tvTelefResultat.setText(rs.getString(6));
+//                    tvDescResultat.setText(rs.getString(5));
+                    Toast.makeText(this, "rs.getString(1)", Toast.LENGTH_LONG);
+
+                    Toast.makeText(this, rs.getString(1), Toast.LENGTH_LONG);
                 }
+            }else{
+                ConnectionResult="Check Connection";
+                Toast.makeText(this, "dins del else", Toast.LENGTH_LONG);
             }
         } catch (Exception ex) {
             Log.e("Error: ", ex.getMessage());
