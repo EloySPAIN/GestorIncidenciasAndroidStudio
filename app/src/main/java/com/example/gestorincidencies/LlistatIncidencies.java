@@ -48,11 +48,15 @@ public class LlistatIncidencies extends AppCompatActivity {
             ConnexioBD connectionHelper = new ConnexioBD();
             connection = connectionHelper.connect();
             if (connection != null) {
+
                 String query = "Select * from incidencies2";
+
                 Statement st = connection.createStatement();
                 ResultSet rs = st.executeQuery(query);
 
                 while (rs.next()) {
+
+
 //                    tvIdResultat.setText(rs.getString(1));
 //                    tvNomResultat.setText(rs.getString(2));
 //                    tvCognomResultat.setText(rs.getString(3));
