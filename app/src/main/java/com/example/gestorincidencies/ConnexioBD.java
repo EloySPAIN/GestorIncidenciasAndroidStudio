@@ -13,7 +13,7 @@ public class ConnexioBD{
 
     @SuppressLint("NewApi")
     public Connection connect(){
-        ip="192.168.5.100";
+        ip="192.168.5.227";
         username="jordi";
         pass="123";
         port="3306";
