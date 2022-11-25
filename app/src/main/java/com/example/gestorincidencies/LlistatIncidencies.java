@@ -57,19 +57,19 @@ public class LlistatIncidencies extends AppCompatActivity {
                 while (rs.next()) {
 
 
-//                    tvIdResultat.setText(rs.getString(1));
+                    tvIdResultat.setText(rs.getString(1));
 //                    tvNomResultat.setText(rs.getString(2));
 //                    tvCognomResultat.setText(rs.getString(3));
 //                    tvResumResultat.setText(rs.getString(4));
 //                    tvTelefResultat.setText(rs.getString(6));
 //                    tvDescResultat.setText(rs.getString(5));
-                    Toast.makeText(this, "rs.getString(1)", Toast.LENGTH_LONG);
+                    Toast.makeText(this, "rs.getString(1)", Toast.LENGTH_LONG).show();
 
-                    Toast.makeText(this, rs.getString(1), Toast.LENGTH_LONG);
+                    Toast.makeText(this, rs.getString(1), Toast.LENGTH_LONG).show();
                 }
             }else{
                 ConnectionResult="Check Connection";
-                Toast.makeText(this, "dins del else", Toast.LENGTH_LONG);
+                Toast.makeText(this, "dins del else", Toast.LENGTH_LONG).show();
             }
         } catch (Exception ex) {
             Log.e("Error: ", ex.getMessage());
