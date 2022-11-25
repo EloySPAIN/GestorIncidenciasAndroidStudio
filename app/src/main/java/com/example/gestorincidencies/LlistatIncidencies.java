@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,6 +38,7 @@ public class LlistatIncidencies extends AppCompatActivity {
     public void getTextFromSQL(View v) {
         List<Map<String,String>> data = null;
         data = new ArrayList<Map<String,String>>();
+
         try {
             ConnexioBD connectionHelper = new ConnexioBD();
             connection = connectionHelper.connect();
@@ -47,13 +50,16 @@ public class LlistatIncidencies extends AppCompatActivity {
                 ResultSet rs = st.executeQuery(query);
 
                 while (rs.next()){
-                    Map<String,String> dtname = new HashMap<String, String>();
+                    HashMap<String, String> hm = new HashMap<String, String>();
+                    hm.put("id", rs.getString("id"));
+                    hm.put("usuari", rs.getString("usuari"));
+                    hm.put("tipus", rs.getString("tipus"));
+                    hm.put("marca", rs.getString("marca"));
+                    hm.put("ubicacio", rs.getString("ubicacio"));
+                    hm.put("descripcio", rs.getString("descripcio"));
+                    hm.put("data", rs.getString("data"));
 
-                    dtname.put("id",rs.getString("id"));
-
-                    Toast.makeText(this, rs.getString("id"), Toast.LENGTH_SHORT).show();
-
-                    data.add(dtname);
+                     data.add(hm);
                 }
             } else {
                 ConnectionResult = "Check Connection";
@@ -62,6 +68,13 @@ public class LlistatIncidencies extends AppCompatActivity {
         } catch (Exception ex) {
             Log.e("Error: ", ex.getMessage());
         }
+
+        String[] from = {"id", "usuari", "tipus", "marca", "ubicacio", "descripcio", "data"};
+        int[] to = {R.id.id, R.id.usuari, R.id.tipus, R.id.marca, R.id.ubicacio, R.id.descripcio, R.id.data};
+
+        SimpleAdapter simpleAdapter = new SimpleAdapter(getBaseContext(), data, R.layout.llistat_item, from, to);
+        ListView androidListView = (ListView) findViewById(R.id.lv);
+        androidListView.setAdapter(simpleAdapter);
 
     }
 }
