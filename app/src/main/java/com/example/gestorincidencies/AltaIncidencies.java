@@ -2,6 +2,8 @@ package com.example.gestorincidencies;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.SpannableStringBuilder;
+import android.text.style.RelativeSizeSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -51,13 +53,14 @@ public class AltaIncidencies extends AppCompatActivity {
             }
         });
 
-
         btnSubmit = findViewById(R.id.submit);
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
+                    boolean esVacio = false;
+                    String vacio = "";
                     nom = eNom.getText().toString().trim();
                     tipo = spinnerMarca.getSelectedItem().toString();
                     marca = eMarca.getText().toString().trim();
@@ -67,18 +70,53 @@ public class AltaIncidencies extends AppCompatActivity {
 
                     ConnexioBD connectionHelper = new ConnexioBD();
                     connection = connectionHelper.connect();
+
                     if (connection != null) {
 
-                        String query = "INSERT INTO incidencies2 (usuari,tipus,marca,ubicacio,descripcio,data) VALUES ('"+nom+"','"+tipo+"','"+marca+"','"+ubi+"','"+desc+"', str_to_date('"+data+"', '%d-%m-%Y'));";
-                        Statement st = connection.createStatement();
-                        st.executeUpdate(query);
+                        if(nom.isEmpty()){
+                            vacio = vacio + "'Nom Usuari' ";
+                            esVacio = true;
+                        }
+                        if (tipo.isEmpty()){
+                            vacio = vacio + "'Tipus' ";
+                            esVacio = true;
+                        }
+                        if (marca.isEmpty()){
+                            vacio = vacio + "'Marca' ";
+                            esVacio = true;
+                        }
+                        if (ubi.isEmpty()){
+                            vacio = vacio + "'Ubicació' ";
+                            esVacio = true;
+                        }
+                        if (desc.isEmpty()){
+                            vacio = vacio + "'Descripció' ";
+                            esVacio = true;
+                        }
+                        if (data.isEmpty()){
+                            vacio = vacio + "'Data' ";
+                            esVacio = true;
+                        }
+                        if(esVacio){
+                            String comVacio = "Los campos " + vacio + "se encuentran vacios";
+                            SpannableStringBuilder biggerText = new SpannableStringBuilder(comVacio);
+                            biggerText.setSpan(new RelativeSizeSpan(0.90f), 0, comVacio.length(), 0);
+                            Toast.makeText(AltaIncidencies.this, biggerText, Toast.LENGTH_SHORT).show();
+                            esVacio = false;
+                        }else{
+                            String query = "INSERT INTO incidencies2 (usuari,tipus,marca,ubicacio,descripcio,data, resolta) VALUES ('"+nom+"','"+tipo+"','"+marca+"','"+ubi+"','"+desc+"', str_to_date('"+data+"', '%d-%m-%Y'), 0);";
+                            Statement st = connection.createStatement();
+                            st.executeUpdate(query);
 
-                        Toast.makeText(AltaIncidencies.this, "Datos enviados", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AltaIncidencies.this, "Datos enviados", Toast.LENGTH_SHORT).show();
+                            connection.close();
+                        }
 
                         connection.close();
                     } else {
                         Toast.makeText(AltaIncidencies.this, "error", Toast.LENGTH_SHORT).show();
                     }
+                    connection.close();
                 } catch (Exception ex) {
                     Log.e("Error: ", ex.getMessage());
                 }

@@ -13,9 +13,9 @@ public class ConnexioBD{
 
     @SuppressLint("NewApi")
     public Connection connect(){
-        ip="192.168.5.227";
-        username="jordi";
-        pass="123";
+        ip="192.168.1.13";
+        username="eloy";
+        pass="1234";
         port="3306";
         database="act2m8";
 
