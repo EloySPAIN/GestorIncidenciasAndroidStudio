@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,6 +16,7 @@ import java.util.*;
 public class LlistatIncidencies extends AppCompatActivity {
 
     private Button btn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +38,7 @@ public class LlistatIncidencies extends AppCompatActivity {
     public void getTextFromSQL(View v) {
         List<Map<String,String>> data = null;
         data = new ArrayList<Map<String,String>>();
+        ListView lv = (ListView) findViewById(R.id.lv);
 
         try {
             ConnexioBD connectionHelper = new ConnexioBD();
@@ -58,23 +59,22 @@ public class LlistatIncidencies extends AppCompatActivity {
                     hm.put("ubicacio", rs.getString("ubicacio"));
                     hm.put("descripcio", rs.getString("descripcio"));
                     hm.put("data", rs.getString("data"));
+                    hm.put("resolta", rs.getString("resolta"));
 
                      data.add(hm);
                 }
             } else {
-                ConnectionResult = "Check Connection";
-                Toast.makeText(this, "dins del else", Toast.LENGTH_LONG).show();
+                ConnectionResult = "Failed";
             }
         } catch (Exception ex) {
             Log.e("Error: ", ex.getMessage());
         }
 
-        String[] from = {"id", "usuari", "tipus", "marca", "ubicacio", "descripcio", "data"};
-        int[] to = {R.id.id, R.id.usuari, R.id.tipus, R.id.marca, R.id.ubicacio, R.id.descripcio, R.id.data};
+        String[] from = {"id", "usuari", "tipus", "marca", "ubicacio", "descripcio", "data", "resolta"};
+        int[] to = {R.id.id, R.id.usuari, R.id.tipus, R.id.marca, R.id.ubicacio, R.id.descripcio, R.id.resolta};
 
         SimpleAdapter simpleAdapter = new SimpleAdapter(getBaseContext(), data, R.layout.llistat_item, from, to);
-        ListView androidListView = (ListView) findViewById(R.id.lv);
-        androidListView.setAdapter(simpleAdapter);
+        lv.setAdapter(simpleAdapter);
 
     }
 }
