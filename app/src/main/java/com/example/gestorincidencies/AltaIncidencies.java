@@ -104,7 +104,7 @@ public class AltaIncidencies extends AppCompatActivity {
                             Toast.makeText(AltaIncidencies.this, biggerText, Toast.LENGTH_SHORT).show();
                             esVacio = false;
                         }else{
-                            String query = "INSERT INTO incidencies2 (usuari,tipus,marca,ubicacio,descripcio,data) VALUES ('"+nom+"','"+tipo+"','"+marca+"','"+ubi+"','"+desc+"', str_to_date('"+data+"', '%d-%m-%Y'));";
+                            String query = "INSERT INTO incidencies2 (usuari,tipus,marca,ubicacio,descripcio,data, resolta) VALUES ('"+nom+"','"+tipo+"','"+marca+"','"+ubi+"','"+desc+"', str_to_date('"+data+"', '%d-%m-%Y'), 0);";
                             Statement st = connection.createStatement();
                             st.executeUpdate(query);
 
