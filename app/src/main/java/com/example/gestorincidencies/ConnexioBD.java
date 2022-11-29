@@ -13,9 +13,9 @@ public class ConnexioBD{
 
     @SuppressLint("NewApi")
     public Connection connect(){
-        ip="192.168.1.13";
-        username="eloy";
-        pass="1234";
+        ip="192.168.1.233";
+        username="jordi";
+        pass="123";
         port="3306";
         database="act2m8";
 
@@ -27,7 +27,7 @@ public class ConnexioBD{
 
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            connectionURL="jdbc:mysql://"+ip+":"+port+"/"+database;
+            connectionURL="jdbc:mysql://"+ip+":"+port+"/"+database+"?allowPublicKeyRetrieval=true&useSSL=false";
             connection= DriverManager.getConnection(connectionURL, username, pass);
         }catch(Exception ex){
             Log.e("Error ", ex.getMessage());
