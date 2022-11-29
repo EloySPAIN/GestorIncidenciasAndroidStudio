@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,13 +18,17 @@ import java.util.*;
 public class LlistatIncidencies extends AppCompatActivity {
 
     private Button btn;
-
+    Connection connect;
+    private String id;
+    private EditText idAMostrar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.llistat);
         btn = findViewById(R.id.home);
+        idAMostrar = findViewById(R.id.idAMostrar);
+        id = idAMostrar.getText().toString().trim();
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,45 +42,33 @@ public class LlistatIncidencies extends AppCompatActivity {
     String ConnectionResult = "";
 
     public void getTextFromSQL(View v) {
-        List<Map<String,String>> data = null;
-        data = new ArrayList<Map<String,String>>();
-        ListView lv = (ListView) findViewById(R.id.lv);
+        TextView user = (TextView) findViewById(R.id.tvUser);
+        TextView tipus = (TextView) findViewById(R.id.tvTipus);
+        TextView marca = (TextView) findViewById(R.id.tvMarca);
+        TextView ubcacio = (TextView) findViewById(R.id.tvUbicacio);
+        TextView descripcio = (TextView) findViewById(R.id.tvDescripcio);
+        TextView data = (TextView) findViewById(R.id.tvData);
 
-        try {
-            ConnexioBD connectionHelper = new ConnexioBD();
-            connection = connectionHelper.connect();
-            if (connection != null) {
+        try{
+            ConnexioBD connexioBD = new ConnexioBD();
+            connect = connexioBD.connect();
 
-                String query = "Select * from incidencies2";
+            if (connect != null) {
+                String query = "select * from incidencies2 where id='" + id + "';";
+                Statement smt = connect.createStatement();
+                ResultSet rs = smt.executeQuery(query);
 
-                Statement st = connection.createStatement();
-                ResultSet rs = st.executeQuery(query);
-
-                while (rs.next()){
-                    HashMap<String, String> hm = new HashMap<String, String>();
-                    hm.put("id", rs.getString("id"));
-                    hm.put("usuari", rs.getString("usuari"));
-                    hm.put("tipus", rs.getString("tipus"));
-                    hm.put("marca", rs.getString("marca"));
-                    hm.put("ubicacio", rs.getString("ubicacio"));
-                    hm.put("descripcio", rs.getString("descripcio"));
-                    hm.put("data", rs.getString("data"));
-                    hm.put("resolta", rs.getString("resolta"));
-
-                     data.add(hm);
+                while(rs.next()){
+                    user.setText(rs.getString(2));
+                    user.setText(rs.getString(3));
+                    user.setText(rs.getString(4));
+                    user.setText(rs.getString(5));
+                    user.setText(rs.getString(6));
                 }
-            } else {
-                ConnectionResult = "Failed";
             }
-        } catch (Exception ex) {
+
+        }catch (Exception ex){
             Log.e("Error: ", ex.getMessage());
         }
-
-        String[] from = {"id", "usuari", "tipus", "marca", "ubicacio", "descripcio", "data", "resolta"};
-        int[] to = {R.id.id, R.id.usuari, R.id.tipus, R.id.marca, R.id.ubicacio, R.id.descripcio, R.id.resolta};
-
-        SimpleAdapter simpleAdapter = new SimpleAdapter(getBaseContext(), data, R.layout.llistat_item, from, to);
-        lv.setAdapter(simpleAdapter);
-
     }
 }

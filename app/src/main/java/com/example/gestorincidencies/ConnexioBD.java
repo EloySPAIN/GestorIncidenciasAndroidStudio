@@ -27,7 +27,7 @@ public class ConnexioBD{
 
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            connectionURL="jdbc:mysql://"+ip+":"+port+"/"+database;
+            connectionURL="jdbc:mysql://"+ip+":"+port+"/"+database+"?allowPublicKeyRetrieval=true&useSSL=false";
             connection= DriverManager.getConnection(connectionURL, username, pass);
         }catch(Exception ex){
             Log.e("Error ", ex.getMessage());
