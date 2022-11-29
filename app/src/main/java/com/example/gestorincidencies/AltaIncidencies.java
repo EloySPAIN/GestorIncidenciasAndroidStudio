@@ -34,6 +34,7 @@ public class AltaIncidencies extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Pregunta a l'usuari l'acces de rebre i enviar notificacions al telefon
         if(ActivityCompat.checkSelfPermission(
                 AltaIncidencies.this, Manifest.permission.SEND_SMS)
                 != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
@@ -43,7 +44,7 @@ public class AltaIncidencies extends AppCompatActivity {
                     { Manifest.permission.SEND_SMS,},1);
         }else{
         };
-
+        
         mNotificationUtils = new NotificationUtils(this);
 
         super.onCreate(savedInstanceState);
@@ -56,7 +57,7 @@ public class AltaIncidencies extends AppCompatActivity {
         eUbi = findViewById(R.id.editTextUbi);
         eDesc = findViewById(R.id.editTextDesc);
         eData = findViewById(R.id.editTextData);
-
+        
         spinnerMarca = findViewById(R.id.spinnerTipus);
         adaptador = ArrayAdapter.createFromResource(this, R.array.tipusMarca, android.R.layout.simple_spinner_item);
         adaptador.setDropDownViewResource(android.R.layout.simple_spinner_item);
@@ -89,7 +90,7 @@ public class AltaIncidencies extends AppCompatActivity {
                     ConnexioBD connectionHelper = new ConnexioBD();
                     connection = connectionHelper.connect();
 
-
+                    //Control d'errors per no enviar camps buits
                     if (connection != null) {
 
                         if(nom.isEmpty()){
@@ -116,6 +117,7 @@ public class AltaIncidencies extends AppCompatActivity {
                             vacio = vacio + "'Data' ";
                             esVacio = true;
                         }
+                        //Comprovar si hi estan buits o no per enviar al sql les dades
                         if(esVacio){
                             String comVacio = "Els camps " + vacio + "no estan omplerts";
                             SpannableStringBuilder biggerText = new SpannableStringBuilder(comVacio);

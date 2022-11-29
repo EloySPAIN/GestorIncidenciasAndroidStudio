@@ -29,7 +29,8 @@ public class ResolucioIncidencies extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.resolucio);
-
+        
+        //Variables que agafen el TextView
         eid = findViewById(R.id.id);
         id= eid.getText().toString().trim();
         eNom = findViewById(R.id.tUsuari);
@@ -47,16 +48,17 @@ public class ResolucioIncidencies extends AppCompatActivity {
                 startActivity(new Intent(ResolucioIncidencies.this,MainActivity.class));
             }
         });
-
+        
+        //Mostrar informacó de cada incidencia
         btnSubmit = findViewById(R.id.busca);
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
-
+                    //Conexió a la base de dades
                     ConnexioBD connectionHelper = new ConnexioBD();
                     connection = connectionHelper.connect();
-
+                    //Comprova si hi ha conexió
                     if (connection != null) {
                         String query = "select * from incidencies2 where id='" + id + "';";
                         Statement smt = connection.createStatement();
@@ -64,9 +66,6 @@ public class ResolucioIncidencies extends AppCompatActivity {
                         while(rs.next()){
                             Toast.makeText(ResolucioIncidencies.this, rs.getString(1), Toast.LENGTH_SHORT).show();
                         }
-
-
-
                     }
                     connection.close();
                 } catch (Exception ex) {
