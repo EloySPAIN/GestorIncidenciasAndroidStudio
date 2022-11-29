@@ -74,10 +74,11 @@ public class LlistatIncidencies extends AppCompatActivity {
                 //mentres la query vagi tenint lnies les asignarem a les variables de la part frontal
                 while(rs.next()){
                     user.setText(rs.getString(2));
-                    user.setText(rs.getString(3));
-                    user.setText(rs.getString(4));
-                    user.setText(rs.getString(5));
-                    user.setText(rs.getString(6));
+                    tipus.setText(rs.getString(3));
+                    marca.setText(rs.getString(4));
+                    ubcacio.setText(rs.getString(5));
+                    descripcio.setText(rs.getString(6));
+                    data.setText(rs.getString(7));
                 }
             }
 

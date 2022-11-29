@@ -16,9 +16,9 @@ public class ConnexioBD{
     @SuppressLint("NewApi")
     public Connection connect(){
         //declarem les variables amb els parametres com la ip, el port...
-        ip="192.168.1.233";
-        username="jordi";
-        pass="123";
+        ip="192.168.5.238";
+        username="eloy";
+        pass="1234";
         port="3306";
         database="act2m8";
 
@@ -33,7 +33,7 @@ public class ConnexioBD{
         //farem un try catch per a si no funciona el connector a la BBDD
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            connectionURL="jdbc:mysql://"+ip+":"+port+"/"+database+"?allowPublicKeyRetrieval=true&useSSL=false";
+            connectionURL="jdbc:mysql://"+ip+":"+port+"/"+database+"?useSSL=false";
             connection= DriverManager.getConnection(connectionURL, username, pass);
         }catch(Exception ex){
             //aqui ens mostrarà el missatge d'error en cas de que fallés
