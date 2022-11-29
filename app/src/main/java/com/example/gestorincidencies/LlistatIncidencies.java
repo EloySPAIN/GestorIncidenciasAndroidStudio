@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,74 +18,79 @@ import java.util.*;
 
 public class LlistatIncidencies extends AppCompatActivity {
 
-    //Aqui declarem les variables que fem servir
     private Button btn;
-    Connection connect;
     private String id;
     private EditText idAMostrar;
 
-    //creem el metode onCreate
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.llistat);
-
-        //declarem les variables locals del onCreate
         btn = findViewById(R.id.home);
         idAMostrar = findViewById(R.id.idAMostrar);
-        id = idAMostrar.getText().toString().trim();
+        id = idAMostrar.getText().toString();
 
         btn.setOnClickListener(new View.OnClickListener() {
-
-            //declarem la funcio onClick dins del onCreate aquesta funció la tindrà el botó de homr
             @Override
             public void onClick(View v) {
-                //Cridem al main activity
                 startActivity(new Intent(LlistatIncidencies.this, MainActivity.class));
             }
         });
     }
 
-    //declarem les variables necessaries per a la connexió a la BBDD
     Connection connection;
     String ConnectionResult = "";
 
-    //declarem el mètode que farà el select de la BBDD
     public void getTextFromSQL(View v) {
-        //devlarem les variables linkantles amb la part visual per a poder tractar-les
+        List<Map<String,String>> data2 = null;
+        data2 = new ArrayList<Map<String,String>>();
         TextView user = (TextView) findViewById(R.id.tvUser);
         TextView tipus = (TextView) findViewById(R.id.tvTipus);
         TextView marca = (TextView) findViewById(R.id.tvMarca);
-        TextView ubcacio = (TextView) findViewById(R.id.tvUbicacio);
+        TextView ubicacio = (TextView) findViewById(R.id.tvUbicacio);
         TextView descripcio = (TextView) findViewById(R.id.tvDescripcio);
         TextView data = (TextView) findViewById(R.id.tvData);
+        try {
+            ConnexioBD connectionHelper = new ConnexioBD();
+            connection = connectionHelper.connect();
+            if (connection != null) {
+                HashMap<String, String> hm = new HashMap<String, String>();
+                String query = "select * from incidencies2 where id = 1";
 
-        //farem un try catch per a connectarnos a la BBDD i si falla ens mostrarà l'error
-        try{
-            //cridem a la funcio de connectar-nos a la BBDD del ConnexióBD
-            ConnexioBD connexioBD = new ConnexioBD();
-            connect = connexioBD.connect();
+                Statement st = connection.createStatement();
+                ResultSet rs = st.executeQuery(query);
 
-            //si la connexió no es null farem el select de la BBDD
-            if (connect != null) {
-                String query = "select * from incidencies2 where id='" + id + "';";
-                Statement smt = connect.createStatement();
-                ResultSet rs = smt.executeQuery(query);
 
-                //mentres la query vagi tenint lnies les asignarem a les variables de la part frontal
-                while(rs.next()){
-                    user.setText(rs.getString(2));
-                    tipus.setText(rs.getString(3));
-                    marca.setText(rs.getString(4));
-                    ubcacio.setText(rs.getString(5));
-                    descripcio.setText(rs.getString(6));
-                    data.setText(rs.getString(7));
+                while (rs.next()){
+
+                    hm.put("id", rs.getString("id"));
+                    hm.put("usuari", rs.getString("usuari"));
+                    hm.put("tipus", rs.getString("tipus"));
+                    hm.put("marca", rs.getString("marca"));
+                    hm.put("ubicacio", rs.getString("ubicacio"));
+                    hm.put("descripcio", rs.getString("descripcio"));
+                    hm.put("data", rs.getString("data"));
+                    hm.put("resolta", rs.getString("resolta"));
+
+                    user.setText(hm.get("usuari"));
+                    tipus.setText(hm.get("tipus"));
+                    marca.setText(hm.get("marca"));
+                    ubicacio.setText(hm.get("ubicacio"));
+                    descripcio.setText(hm.get("descripcio"));
+                    data.setText(hm.get("data"));
                 }
-            }
 
-        }catch (Exception ex){
-            //mostrarà l'error en cas de que no es pugui connectar a la BBDD
+
+            } else {
+                ConnectionResult = "Failed";
+            }
+        } catch (Exception ex) {
             Log.e("Error: ", ex.getMessage());
         }
+
+
+
     }
 }
