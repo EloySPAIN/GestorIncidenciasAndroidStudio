@@ -117,7 +117,7 @@ public class AltaIncidencies extends AppCompatActivity {
                             esVacio = true;
                         }
                         if(esVacio){
-                            String comVacio = "Los campos " + vacio + "se encuentran vacios";
+                            String comVacio = "Els camps " + vacio + "no estan omplerts";
                             SpannableStringBuilder biggerText = new SpannableStringBuilder(comVacio);
                             biggerText.setSpan(new RelativeSizeSpan(0.90f), 0, comVacio.length(), 0);
                             Toast.makeText(AltaIncidencies.this, biggerText, Toast.LENGTH_SHORT).show();
@@ -129,7 +129,7 @@ public class AltaIncidencies extends AppCompatActivity {
 
                             //Construim la notificacio que volem que s'envii a l'usuari
                             Notification.Builder nb = mNotificationUtils.
-                                    getAndroidChannelNotification("Gestor d'incidencies", "La incidencia ha estat resolta");
+                                    getAndroidChannelNotification("Gestor d'incidencies", "La incidencia s'ha donat d'alta correctament");
 
                             mNotificationUtils.getManager().notify(101, nb.build());
 
