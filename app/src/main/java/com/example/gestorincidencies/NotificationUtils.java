@@ -28,7 +28,7 @@ public class NotificationUtils extends ContextWrapper {
         androidChannel.enableVibration(true);
         // Seleccionem el color verd
         androidChannel.setLightColor(Color.GREEN);
-
+        // Com es mostra la notificació
         androidChannel.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
 
         getManager().createNotificationChannel(androidChannel);
