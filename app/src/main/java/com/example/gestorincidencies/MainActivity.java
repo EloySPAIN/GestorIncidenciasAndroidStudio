@@ -21,12 +21,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        
+        // Agafem els botons del xml hi ho afegim a les variables
         btAlta = findViewById(R.id.b1);
         btLlistat = findViewById(R.id.b2);
         btResolucio = findViewById(R.id.b3);
     }
-
+    
+    // Permet canviar entre els diferents layouts de l'aplicació
     public void changeLayout(View v){
 
         if(v==btAlta){
