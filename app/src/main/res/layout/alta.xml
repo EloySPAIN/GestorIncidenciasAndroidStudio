@@ -5,66 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/editTextData"
-        android:layout_width="226dp"
-        android:layout_height="43dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="5dp"
-        android:ems="10"
-        android:inputType="datetime|time"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.837"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.838" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName5"
-        android:layout_width="226dp"
-        android:layout_height="43dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="5dp"
-        android:ems="10"
-        android:inputType="text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.837"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.729" />
-
-    <EditText
-        android:id="@+id/editTextUbi"
-        android:layout_width="226dp"
-        android:layout_height="43dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="5dp"
-        android:ems="10"
-        android:inputType="text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.837"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.613" />
-
-    <EditText
-        android:id="@+id/editTextMarca"
-        android:layout_width="226dp"
-        android:layout_height="43dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="5dp"
-        android:ems="10"
-        android:inputType="text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.837"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.503" />
-
     <Button
         android:id="@+id/homeAlta"
         android:layout_width="wrap_content"
@@ -91,6 +31,71 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.11" />
+
+    <LinearLayout
+        android:layout_width="254dp"
+        android:layout_height="456dp"
+        android:orientation="vertical"
+        android:padding="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.898"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.654">
+
+        <EditText
+            android:id="@+id/editTextNom"
+            android:layout_width="226dp"
+            android:layout_height="43dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="40dp"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <Spinner
+            android:id="@+id/spinnerTipus"
+            android:layout_width="225dp"
+            android:layout_height="26dp"
+            android:layout_marginBottom="40dp" />
+
+        <EditText
+            android:id="@+id/editTextMarca"
+            android:layout_width="226dp"
+            android:layout_height="43dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="33dp"
+            android:ems="10"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/editTextUbi"
+            android:layout_width="226dp"
+            android:layout_height="43dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="40dp"
+            android:ems="10"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/editTextDesc"
+            android:layout_width="226dp"
+            android:layout_height="43dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="25dp"
+            android:ems="10"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/editTextData"
+            android:hint="##/##/####"
+            android:layout_width="226dp"
+            android:layout_height="43dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="5dp"
+            android:ems="10"
+            android:inputType="date" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/nUsuari"
@@ -169,32 +174,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.828" />
 
-    <EditText
-        android:id="@+id/editTextDesc"
-        android:layout_width="226dp"
-        android:layout_height="43dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="5dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.837"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.281" />
-
-    <Spinner
-        android:id="@+id/spinnerTipus"
-        android:layout_width="225dp"
-        android:layout_height="26dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.72"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.384" />
-
     <Button
         android:id="@+id/submit"
         android:layout_width="wrap_content"
@@ -202,9 +181,8 @@
         android:text="Enviar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.931" />
+        app:layout_constraintVertical_bias="0.96" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
